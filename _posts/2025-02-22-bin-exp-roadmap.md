@@ -3,7 +3,7 @@ title: Binary Exploitation Roadmap
 date: 2025-02-22
 categories: ['roadmap']
 tags: ['binary-exploitation']
-author: nefeli
+author: "Nefeli"
 ---
 
 An in-depth roadmap for binary exploitation with explanations of common exploitations methods and more links.
