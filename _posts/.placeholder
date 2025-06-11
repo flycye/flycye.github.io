@@ -1,9 +1,9 @@
 ---
-layout: post
-title: Guide to Binary Exploitation
-author: Nefeli
-categories: Guide
-tags: binary-exploitation
+title: "Guide to Binary Exploitation"
+author: "Nefeli"
+date: 2025-01-11 14:00:00 +0000
+categories: [Guide]
+tags: [exploitation, ctf, pwn]
 ---
 
 
