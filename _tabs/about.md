@@ -1,3 +1,10 @@
+---
+
+
+# the default layout is 'page'
+
+
+--- 
 
 # About Me
 
