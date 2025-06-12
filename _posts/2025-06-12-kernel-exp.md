@@ -11,7 +11,7 @@ Kernel exploitation is one of the many concepts within binary exploitation. Belo
 > My notes follow the book *A Guide to Kernel Exploitation - Attacking the Core* by Enrico Perla and Massimiliano Oldani. [Here](https://www.amazon.com/Guide-Kernel-Exploitation-Attacking-Core/dp/1597494860) is a link to purchase the textbook.
 {: .prompt-info}
 
-# Beginner Concepts 🤍
+# Beginner Concepts ⭐
 
 🎉 Goal: Learn what an operating system is, what kernel exploitation is, and why it’s so dangerous.
 
