@@ -3,7 +3,7 @@ title: Intro to CTFs Guide
 date: 2025-02-26
 categories: ['guide']
 tags: ['ctf', 'beginner']
-author: "Nefeli"
+author: nefeli
 ---
 
 ## Finding CTFs
