@@ -61,7 +61,7 @@ Before the OS switches to another process, it must *save the state of the curren
 - Stack (function calls, local variables, return addresses, etc.)
 - and more…
 
-![image](https://github.com/user-attachments/assets/3b3b1cc6-30d3-4cde-be00-f2ccd62f7c81)
+![image](https://github.com/user-attachments/assets/c4fcd2f0-e070-4948-bd75-24aef56097ff)
 
 The component that decides which task to switch to at what time is called the **scheduler.** It makes it look like all processes are multitasking when, really, one process is running on the CPU at a time!
 
