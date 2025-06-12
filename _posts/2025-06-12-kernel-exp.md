@@ -9,10 +9,9 @@ author: "Nefeli"
 Kernel exploitation is one of the many concepts within binary exploitation. Below I’ll introduce the basics of Operating Systems, and then we’ll dive into some methods of exploitation.
 
 > My notes follow the book *A Guide to Kernel Exploitation - Attacking the Core* by Enrico Perla and Massimiliano Oldani. [Here](https://www.amazon.com/Guide-Kernel-Exploitation-Attacking-Core/dp/1597494860) is a link to purchase the textbook.
-
 {: .prompt-info}
 
-# Beginner Concepts ⭐️
+# Beginner Concepts 🤍
 
 🎉 Goal: Learn what an operating system is, what kernel exploitation is, and why it’s so dangerous.
 
@@ -45,7 +44,6 @@ An attacker can influence a system by writing both user-land and kernel-land exp
 | Attacker has control over environment and library subsystem | Attacker races with other applications that are scheduled |
 
 > Many protections at the kernel level can easily be disabled and may not affect the kernel itself.
-
 {: .prompt-tip}
 
 ## Concurrency and Scheduling
@@ -75,7 +73,6 @@ The scheduler must take some metrics into account when deciding how to schedule 
 However, with so many processes being switched between, there is a risk of **race conditions** occurring. Race conditions are when at least two processes are fighting over the same data block — meaning they access and alter shared data at the same time. This gives us unexpected results in our process and exposes it to a vulnerable state.
 
 > Real-World Exploit: **Dirty COW (CVE-2016-5195)** is a kernel-level exploit which leveraged a race condition to gain write access to the Linux kernel’s memory mappings with copy-on-write, allowing an attacker to raise their privileges and disable security mechanisms. Here’s [a video](https://www.youtube.com/watch?v=kEsshExn7aE) if you want to learn more. 🐄
-> 
 
 Okay now we all get it. Processes aren’t *really* running at the same time on one CPU, only one process per single-core CPU. Now that we have a good grasp on how processes share CPU time, let’s face another question…
 
@@ -88,7 +85,6 @@ Well, the CPU can only access a certain amount of memory. This space is part of 
 **Virtual memory** is an abstraction made by the OS to give the illusion to each process that it has its own memory space that is isolated from others. It maps virtual addresses to physical ones with the help of the **memory management unit (MMU).**
 
 > ex. Two processes are using the virtual address of `0xCAFEBABE`, but in reality the OS is mapping that to two different locations — `0x404000` and `0x808000`.
-> 
 
 What does virtual memory provide?
 
@@ -98,7 +94,7 @@ What does virtual memory provide?
 
 ### What is mapping again?
 
-Our poor OS also takes this responsibility. It maintains **page tables**, which are data structures that translate virtual addresses into physical addresses. As you can likely guess by the name, it keeps these addresses in a table of **pages**.
+The OS also takes this responsibility. It maintains **page tables**, which are data structures that translate virtual addresses into physical addresses. As you can likely guess by the name, it keeps these addresses in a table of **pages**.
 
 Every time a process wants to access an address in memory, the MMU resolves the virtual address into the correct physical one using this page table.
 
@@ -106,13 +102,39 @@ Every time a process wants to access an address in memory, the MMU resolves the 
 
 On top of these basic security measures, modern OSes have implemented many more **kernel protections**. These defenses make kernel exploitation even more complex!
 
-- KASLR: Kernel Address Space Layout Randomization
+- KASLR: Kernel Address Space Layout Randomization, randomizes kernel address space to make them more unpredictable
 - NX (No eXecute): Memory on the heap or stack is non-executable, preventing shellcode from being arbitrarily executed
 - SMEP/SMAP (Supervisor Mode Execution/Access Prevention) Prevents the execution of user-land code by the kernel. SMAP prevents dereferencing user points in kernel mode, preventing additional attacks.
 - PTI (Page Table Isolation):  Doesn’t map kernel memory when a user-land process is running, system calls switch to a separate page table with kernel memory
 
-All of these mitigations provide a layer of protection, but attackers can still take advantage of other methods to access kernel memory. How does memory mismanagement, like dangling or tombstone pointers, affect the kernel?
+All of these mitigations provide a layer of protection, but attackers can still take advantage of other methods to access kernel memory. Let’s explore these more in depth!
 
-## Let’s talk pointers
+## Kernel Protections
 
-### Use-After-Free Vulnerabilities (UAF)
+### KASLR (Kernel Address Space Layout Randomization)
+
+- similar to ASLR in user-land (see my *Binary Exploitation Guide* for more on ASLR)
+- randomizes the location of the kernel image base address
+- randomizes where kernel components are loaded in memory
+
+This makes it much more difficult for attackers to locate gadgets to jump to.
+
+We can tell if KASLR is enabled on Linux (v3.14 and above) by checking if addresses of symbols differ between `/proc/kallsysms` and `System.map`.
+
+> For further reading, check out [this article](https://dev.to/satorutakeuchi/a-brief-description-of-aslr-and-kaslr-2bbp) 🔖
+
+### How is KASLR then bypassed?
+
+1. Spotting a bug in a process that leaks memory and looking for kernel pointers
+    1. These leaks can come from uninitialized memory, side channels (if timing-based), and even IOCTLs in some drivers
+    2. Attackers can then calculate the kernel base address by subtracting a known offset
+2. Brute-Forcing
+    1. Easier within sandboxes, containers, or VMs with no panic mechanisms
+    2. Effective when kernel space is small
+3. Leaking kernel logs with `dmesg` 
+    1. Can leak module addresses and stack traces with pointers
+    2. Cannot be done if `dmesg_restrict` is set to 1 or `kptr_restrict` is set to 2
+4. Load `/proc/kallsyms` or [`System.map`](http://System.map) to get `vmlinux` bases and get addresses
+    1. More effective in older or misconfigured kernels
+
+### Practice
