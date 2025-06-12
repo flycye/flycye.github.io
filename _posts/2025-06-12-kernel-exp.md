@@ -12,7 +12,7 @@ Kernel exploitation is one of the many concepts within binary exploitation. Belo
 
 {: .prompt-info}
 
-# Beginner Concepts 🤍
+# Beginner Concepts ⭐️
 
 🎉 Goal: Learn what an operating system is, what kernel exploitation is, and why it’s so dangerous.
 
