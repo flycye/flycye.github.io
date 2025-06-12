@@ -134,7 +134,7 @@ We can tell if KASLR is enabled on Linux (v3.14 and above) by checking if addres
 3. Leaking kernel logs with `dmesg` 
     1. Can leak module addresses and stack traces with pointers
     2. Cannot be done if `dmesg_restrict` is set to 1 or `kptr_restrict` is set to 2
-4. Load `/proc/kallsyms` or [`System.map`](http://System.map) to get `vmlinux` bases and get addresses
+4. Load `/proc/kallsyms` or `System.map` to get `vmlinux` bases and get addresses
     1. More effective in older or misconfigured kernels
 
 ### Practice
