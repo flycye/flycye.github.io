@@ -99,7 +99,7 @@ Well, the CPU can only access a certain amount of memory. This space is part of 
 
 ![image](https://github.com/user-attachments/assets/d39e55ab-1671-46bb-a253-1751d7355f23)
 
-What does virtual memory provide?
+### What does virtual memory provide?
 
 - Isolation (what’s happening in one process won’t affect the other, even if it seems like they’re sharing addresses virtually)
 - Protection (processes don’t know the actual physical addresses, and it’s hard for an attacker to map those)
@@ -166,7 +166,7 @@ This type of overflow occurs when a value that falls outside of the range is sto
 > ℹ️ Some common bugs include NULL pointer deferencing, corrupted pointers, nonvalidated pointers, etc.
 {: .prompt-info}
 
-### Kernel Stack Vulnerabilities
+## Kernel Stack Vulnerabilities
 
 Now that we’ve touched on some bug basics and know a little about kernel protections, let’s explore a common target in exploits: **the** kernel stack! ✨
 
@@ -217,7 +217,7 @@ The allocator will give the kernel system a pointer to a chunk upon request. It 
 
 But, the kernel still falls victim to overflow vulnerabilities and unsafe function usage, which makes it possible for a user to read the rest of the page or even past the page that the chunk lives in.
 
-### I tried telling a race condition joke...
+## I tried telling a race condition joke...
 but you might have heard the punchline first
 
 One last topic to touch up on before we finally have the basics of kernel exploitation in our toolkit is race conditions. A **race condition** happens when two or more threads try to access a shared resource concurrently, altering it in different orders and producing unexpected results.
