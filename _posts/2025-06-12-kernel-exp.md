@@ -46,6 +46,9 @@ An attacker can influence a system by writing both user-land and kernel-land exp
 > Many protections at the kernel level can easily be disabled and may not affect the kernel itself.
 {: .prompt-tip}
 
+![image](https://github.com/user-attachments/assets/48644867-991b-487e-8c51-8fd949f9ea85)
+
+
 ## Concurrency and Scheduling
 
 As I’m writing this I have Spotify, Youtube, even Discord open and running in the background… or so it seems. 
