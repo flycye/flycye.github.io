@@ -158,6 +158,10 @@ The majority of exploits are born through something as simple as a bug in a piec
 
 Now, just because there exists a bug in some software doesn’t necessarily mean that we can use it to compromise a system’s security. This way, bugs can be split into various **classes**, which each class being groups of bugs that share a set of similar characteristics.
 
+ex.
+### Integer Overflows
+
+This type of overflow occurs when a value that falls outside of the range is stored into an integer variable (can be signed or unsigned). This leads to _undefined behaviour_ in C++.
 
 > ℹ️ Some common bugs include NULL pointer deferencing, corrupted pointers, nonvalidated pointers, etc.
 {: .prompt-info}
@@ -213,4 +217,14 @@ The allocator will give the kernel system a pointer to a chunk upon request. It 
 
 But, the kernel still falls victim to overflow vulnerabilities and unsafe function usage, which makes it possible for a user to read the rest of the page or even past the page that the chunk lives in.
 
+### I tried telling a race condition joke...
+but you might have heard the punchline first
+
+One last topic to touch up on before we finally have the basics of kernel exploitation in our toolkit is race conditions. A **race condition** happens when two or more threads try to access a shared resource concurrently, altering it in different orders and producing unexpected results.
+
+ex.
+![image](https://github.com/user-attachments/assets/589b88b6-97a8-4fb2-baf8-b813667ba87d)
+
+
 ## Intermediate Concepts 🌟
+
