@@ -212,3 +212,5 @@ OSes may differ in implementations of this allocator, but overall the process re
 The allocator will give the kernel system a pointer to a chunk upon request. It uses metadata or a linkedlist to keep track of freed objects.
 
 But, the kernel still falls victim to overflow vulnerabilities and unsafe function usage, which makes it possible for a user to read the rest of the page or even past the page that the chunk lives in.
+
+## Intermediate Concepts 🌟
