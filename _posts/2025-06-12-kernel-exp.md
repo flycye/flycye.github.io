@@ -94,6 +94,8 @@ Well, the CPU can only access a certain amount of memory. This space is part of 
 
 > ex. Two processes are using the virtual address of `0xCAFEBABE`, but in reality the OS is mapping that to two different locations — `0x404000` and `0x808000`.
 
+![image](https://github.com/user-attachments/assets/d39e55ab-1671-46bb-a253-1751d7355f23)
+
 What does virtual memory provide?
 
 - Isolation (what’s happening in one process won’t affect the other, even if it seems like they’re sharing addresses virtually)
