@@ -122,6 +122,7 @@ comments:
     input_position: bottom
     lang: en
     reactions_enabled: 1
+    data-theme: gruvbox
 
 # Self-hosted static assets, optional › https://github.com/cotes2020/chirpy-static-assets
 assets:
