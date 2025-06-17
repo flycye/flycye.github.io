@@ -139,4 +139,44 @@ We can tell if KASLR is enabled on Linux (v3.14 and above) by checking if addres
 4. Load `/proc/kallsyms` or `System.map` to get `vmlinux` bases and get addresses
     1. More effective in older or misconfigured kernels
 
-### Practice
+## Classifying Bugs
+
+Now that we have a general idea of the difference between user-land and kernel-land, as well as virtual versus physical address spaces, we will delve into how to start exploiting kernels. To do this, we first need to analyze and a gain a great understanding of its underlying code.
+
+The majority of exploits are born through something as simple as a bug in a piece of software. A **bug** is something wrong in a program that crashes it or produces weird behaviour/results that we aren’t seeking.
+
+Now, just because there exists a bug in some software doesn’t necessarily mean that we can use it to compromise a system’s security. This way, bugs can be split into various **classes**, which each class being groups of bugs that share a set of similar characteristics.
+
+
+> ℹ️ Some common bugs include NULL pointer deferencing, corrupted pointers, nonvalidated pointers, etc.
+{: .prompt-info}
+
+### Kernel Stack Vulnerabilities
+
+Now that we’ve touched on some bug basics and know a little about kernel protections, let’s explore a common target in exploits: **the** kernel stack! ✨
+
+The **kernel stack** is spaw every time a process requests some operation from the kernel (ex. the write() system call).
+
+> This request process is also called **trapping** to the kernel
+{: .prompt-info}
+
+The kernel stack works just as you would a normal stack to in user-land, with some key differences.
+
+| User Stack | Kernel Stack |
+| --- | --- |
+| Dynamic | 4KB or 8KB in size |
+| Each process has its own | All kernel stacks share kernel address space |
+
+…and if we’re not an attacker, this is not good news for us! 😢
+
+The kernel stack’s limited space is what allows most exploits to slip through. Using **buffer overflows** (covered in my *Binary Exploitation* Guide), we can even overwrite memory that we shouldn’t have access to.
+
+### Real-World Exploit: **CVE-2017-6074** 🧦
+
+**CVE-2017-6074** is a Double Free vulnerability in the DCCP protocol within the Linux Kernel.
+
+A function called `dccp_rcv_state_process` within the input handler file pertaining to the protocol didn’t handle `DCPP_PKT_REQUEST` structures correctly. 
+
+Using a third party application users could make a `setsockopt`system call and escalate priviledges to root or even cause a DoS.
+
+Check it out [here](https://nvd.nist.gov/vuln/detail/CVE-2017-6074)
