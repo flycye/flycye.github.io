@@ -180,3 +180,24 @@ A function called `dccp_rcv_state_process` within the input handler file pertain
 Using a third party application users could make a `setsockopt`system call and escalate priviledges to root or even cause a DoS.
 
 Check it out [here](https://nvd.nist.gov/vuln/detail/CVE-2017-6074)
+
+## Kernel Heap Allocation
+
+If the word *heap* sounds just as intimidating to you as it does to me, then we’re both in the same boat. I’ll try to simplify some of the hardest concepts below.
+
+**Kernel heap** is like a regular heap — it stores dynamic objects within the heap. These objects can be anything from filesystem directory entries to internal kernel structures.
+
+Because, at this point, none of us must be very fond of `malloc()` and `free()`, the kernel has it’s *own allocator*!
+
+### Ok… how does this allocator work?
+
+OSes may differ in implementations of this allocator, but overall the process remains the same:
+
+1. Ask and get a page
+2. Divide that page into chunks, aka **slabs** with a fixed size
+3. Pages are grouped into **caches**
+    1. They’re grouped by object type
+
+The allocator will give the kernel system a pointer to a chunk upon request. It uses metadata or a linkedlist to keep track of freed objects.
+
+But, the kernel still falls victim to overflow vulnerabilities and unsafe function usage, which makes it possible for a user to read the rest of the page or even past the page that the chunk lives in.
