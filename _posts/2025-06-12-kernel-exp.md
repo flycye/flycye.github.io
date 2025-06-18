@@ -1,5 +1,5 @@
 ---
-title: Guide to Kernel Exploitation
+title: Beginner's Guide to Kernel Exploitation
 date: 2025-06-12
 categories: ['guide']
 tags: ['binary-exploitation']
@@ -11,8 +11,7 @@ Kernel exploitation is one of the many concepts within binary exploitation. Belo
 > My notes follow the book *A Guide to Kernel Exploitation - Attacking the Core* by Enrico Perla and Massimiliano Oldani. [Here](https://www.amazon.com/Guide-Kernel-Exploitation-Attacking-Core/dp/1597494860) is a link to purchase the textbook.
 {: .prompt-info}
 
-# Beginner Concepts ⭐
-
+# Introduction
 🎉 Goal: Learn what an operating system is, what kernel exploitation is, and why it’s so dangerous.
 
 An **operating system (OS)** is a layer of software that controls all the hardware and gives applications the necessary environment to run on your computer. We refer to the core of an OS as the ***kernel***. The kernel directly interfaces with hardware. It manages I/O operations, schedules processes, etc.
@@ -230,18 +229,6 @@ Many solutions have been presented for this solution -- locks, semaphores, etc. 
 > Race conditions are only one type of logic bug. **Logic bugs** are bugs that do not cause a program to crash, but instead produce unexpected behaviour or results.
 > Read about [filesystem logic bugs](https://y3a.github.io/2023/07/06/filesystem-logic-bugs/), [reference counter overflows](https://ruffell.nz/programming/writeups/2020/09/02/debugging-a-zero-page-reference-counter-overflow-on-4-15-kernel.html), and even [automating vulnerable environment generation for linux kernel vulnerabilities](https://arxiv.org/html/2404.11107v3).
 {: .prompt-info}
-
-# Intermediate Concepts 🌟
-
-Let's build on the concepts we've just learned and explore some real-world vulns to learn ways to bypass mitigations. Here I'll also introduce some handy tools.
-
-## More on the slab allocator
-
-## Bypassing kernel protections
-
-## Kernel ROP Chaining
-
-## Useful Tools
 
 
 
