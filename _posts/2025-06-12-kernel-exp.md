@@ -6,12 +6,13 @@ tags: ['binary-exploitation']
 author: nefeli
 ---
 
+# Introduction
 Kernel exploitation is one of the many concepts within binary exploitation. Below I’ll introduce the basics of Operating Systems, and then we’ll dive into some methods of exploitation.
 
 > My notes follow the book *A Guide to Kernel Exploitation - Attacking the Core* by Enrico Perla and Massimiliano Oldani. [Here](https://www.amazon.com/Guide-Kernel-Exploitation-Attacking-Core/dp/1597494860) is a link to purchase the textbook.
 {: .prompt-info}
 
-# Introduction
+# The OS and the Kernel
 🎉 Goal: Learn what an operating system is, what kernel exploitation is, and why it’s so dangerous.
 
 An **operating system (OS)** is a layer of software that controls all the hardware and gives applications the necessary environment to run on your computer. We refer to the core of an OS as the ***kernel***. The kernel directly interfaces with hardware. It manages I/O operations, schedules processes, etc.
