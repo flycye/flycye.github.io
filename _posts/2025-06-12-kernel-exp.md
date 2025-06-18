@@ -6,7 +6,7 @@ tags: ['binary-exploitation']
 author: nefeli
 ---
 
-# Introduction
+## Introduction
 Kernel exploitation is one of the many concepts within binary exploitation. Below I’ll introduce the basics of Operating Systems, and then we’ll dive into some methods of exploitation.
 
 > My notes follow the book *A Guide to Kernel Exploitation - Attacking the Core* by Enrico Perla and Massimiliano Oldani. [Here](https://www.amazon.com/Guide-Kernel-Exploitation-Attacking-Core/dp/1597494860) is a link to purchase the textbook.
@@ -24,9 +24,7 @@ A kernel holds two different types of runnable instructions:
 
 **Kernel exploitation** is all about elevating our privileges to take us from userland to kernel-land. This is so powerful because if an attacker is able to exploit this they can effectively execute code anyplace on our machine.
 
-## User Privileges
-
-#### test
+### User Privileges
 
 A **userid** is a unique value identifying each user. Specific values are tied to users that have higher privilege (or higher permissions). These users are often called **admins** or **Administrators** in Windows. 
 
@@ -51,7 +49,7 @@ An attacker can influence a system by writing both user-land and kernel-land exp
 ![image](https://github.com/user-attachments/assets/48644867-991b-487e-8c51-8fd949f9ea85)
 
 
-## Concurrency and Scheduling
+### Concurrency and Scheduling
 
 As I’m writing this I have Spotify, Youtube, even Discord open and running in the background… or so it seems. 
 
@@ -83,13 +81,13 @@ The scheduler must take some metrics into account when deciding how to schedule 
 
 However, with so many processes being switched between, there is a risk of **race conditions** occurring. Race conditions are when at least two processes are fighting over the same data block — meaning they access and alter shared data at the same time. This gives us unexpected results in our process and exposes it to a vulnerable state.
 
-### Real-World Exploit: Dirty COW 🐄
+#### Real-World Exploit: Dirty COW 🐄
 
 **Dirty COW (CVE-2016-5195)** is a kernel-level exploit which leveraged a race condition to gain write access to the Linux kernel’s memory mappings with copy-on-write, allowing an attacker to raise their privileges and disable security mechanisms. Here’s [a video](https://www.youtube.com/watch?v=kEsshExn7aE) if you want to learn more. 🐄
 
 Okay now we all get it. Processes aren’t *really* running at the same time on one CPU, only one process per single-core CPU. Now that we have a good grasp on how processes share CPU time, let’s face another question…
 
-## How do processes share memory?
+### How do processes share memory?
 
 **Every machine is constricted by a fixed amount of memory**, whether that’s 4GB (please upgrade if this is you) or 64GB. So how does your poor OS also manage memory between all the processes we need?
 
