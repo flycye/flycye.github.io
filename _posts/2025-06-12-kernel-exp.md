@@ -101,6 +101,7 @@ Well, the CPU can only access a certain amount of memory. This space is part of 
 
 ![image](https://github.com/user-attachments/assets/d39e55ab-1671-46bb-a253-1751d7355f23)
 
+### Important Metrics
 - Isolation (what’s happening in one process won’t affect the other, even if it seems like they’re sharing addresses virtually)
 - Protection (processes don’t know the actual physical addresses, and it’s hard for an attacker to map those)
 - Flexibility (shared libraries can be mapped into processes at the same virtual addresses with the same physical pages too)
@@ -148,6 +149,12 @@ We can tell if KASLR is enabled on Linux (v3.14 and above) by checking if addres
 4. Load `/proc/kallsyms` or `System.map` to get `vmlinux` bases and get addresses
     1. More effective in older or misconfigured kernels
 
+### SMEP/SMAP (Supervisor Mode Execution/Prevention)
+
+### NX (no eXecute)
+
+### PTI (Page Table Isolation)
+
 ## Classifying Bugs
 
 Now that we have a general idea of the difference between user-land and kernel-land, as well as virtual versus physical address spaces, we will delve into how to start exploiting kernels. To do this, we first need to analyze and a gain a great understanding of its underlying code.
@@ -164,7 +171,7 @@ This type of overflow occurs when a value that falls outside of the range is sto
 > ℹ️ Some common bugs include NULL pointer deferencing, corrupted pointers, nonvalidated pointers, etc.
 {: .prompt-info}
 
-## Kernel Stack Vulnerabilities
+### Kernel Stack Vulnerabilities
 
 Now that we’ve touched on some bug basics and know a little about kernel protections, let’s explore a common target in exploits: **the** kernel stack! ✨
 
@@ -184,7 +191,7 @@ The kernel stack works just as you would a normal stack to in user-land, with so
 
 The kernel stack’s limited space is what allows most exploits to slip through. Using **buffer overflows** (covered in my *Binary Exploitation* Guide), we can even overwrite memory that we shouldn’t have access to.
 
-### Real-World Exploit: **CVE-2017-6074** 🧦
+#### Real-World Exploit: **CVE-2017-6074** 🧦
 
 **CVE-2017-6074** is a Double Free vulnerability in the DCCP protocol within the Linux Kernel.
 
@@ -194,7 +201,7 @@ Using a third party application users could make a `setsockopt`system call and e
 
 Check it out [here](https://nvd.nist.gov/vuln/detail/CVE-2017-6074)
 
-## Kernel Heap Allocation
+### Kernel Heap Allocation
 
 If the word *heap* sounds just as intimidating to you as it does to me, then we’re both in the same boat. I’ll try to simplify some of the hardest concepts below.
 
@@ -202,7 +209,7 @@ If the word *heap* sounds just as intimidating to you as it does to me, then we�
 
 Because, at this point, none of us must be very fond of `malloc()` and `free()`, the kernel has it’s *own allocator*!
 
-### A Special Allocator
+#### A Special Allocator
 
 OSes may differ in implementations of this allocator, but overall the process remains the same:
 
