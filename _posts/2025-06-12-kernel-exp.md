@@ -7,13 +7,15 @@ author: nefeli
 ---
 
 ## Introduction
+
 Kernel exploitation is one of the many concepts within binary exploitation. Below I’ll introduce the basics of Operating Systems, and then we’ll dive into some methods of exploitation.
 
 > My notes follow the book *A Guide to Kernel Exploitation - Attacking the Core* by Enrico Perla and Massimiliano Oldani. [Here](https://www.amazon.com/Guide-Kernel-Exploitation-Attacking-Core/dp/1597494860) is a link to purchase the textbook.
 {: .prompt-info}
 
+🎉 **Goal**: Learn what an operating system is, what kernel exploitation is, and why it’s so dangerous.
+
 ## OS & Kernel Basics
-🎉 Goal: Learn what an operating system is, what kernel exploitation is, and why it’s so dangerous.
 
 An **operating system (OS)** is a layer of software that controls all the hardware and gives applications the necessary environment to run on your computer. We refer to the core of an OS as the ***kernel***. The kernel directly interfaces with hardware. It manages I/O operations, schedules processes, etc.
 
@@ -238,6 +240,7 @@ Many solutions have been presented for this solution -- locks, semaphores, etc. 
 > Read about [filesystem logic bugs](https://y3a.github.io/2023/07/06/filesystem-logic-bugs/), [reference counter overflows](https://ruffell.nz/programming/writeups/2020/09/02/debugging-a-zero-page-reference-counter-overflow-on-4-15-kernel.html), and even [automating vulnerable environment generation for linux kernel vulnerabilities](https://arxiv.org/html/2404.11107v3).
 {: .prompt-info}
 
+## Closing
 
-
+Although this are just my notes on the textbook, I hope you now have a better understanding of kernel exploitation and what it entails. Next, consider practicing or watching some case studies. [Here](https://github.com/xairy/linux-kernel-exploitation) is a good resource for finding links to futher your studying.
 
