@@ -231,7 +231,18 @@ Many solutions have been presented for this solution -- locks, semaphores, etc. 
 > Read about [filesystem logic bugs](https://y3a.github.io/2023/07/06/filesystem-logic-bugs/), [reference counter overflows](https://ruffell.nz/programming/writeups/2020/09/02/debugging-a-zero-page-reference-counter-overflow-on-4-15-kernel.html), and even [automating vulnerable environment generation for linux kernel vulnerabilities](https://arxiv.org/html/2404.11107v3).
 {: .prompt-info}
 
-## Intermediate Concepts 🌟
+# Intermediate Concepts 🌟
+
+Let's build on the concepts we've just learned and explore some real-world vulns to learn ways to bypass mitigations. Here I'll also introduce some handy tools.
+
+## More on the slab allocator
+
+## Bypassing kernel protections
+
+## Kernel ROP Chaining
+
+## Useful Tools
+
 
 
 
