@@ -15,7 +15,7 @@ Kernel exploitation is one of the many concepts within binary exploitation. Belo
 
 🎉 **Goal**: Learn what an operating system is, what kernel exploitation is, and why it’s so dangerous.
 
-## OS & Kernel Basics
+## OS & Kernel Basics :
 
 An **operating system (OS)** is a layer of software that controls all the hardware and gives applications the necessary environment to run on your computer. We refer to the core of an OS as the ***kernel***. The kernel directly interfaces with hardware. It manages I/O operations, schedules processes, etc.
 
