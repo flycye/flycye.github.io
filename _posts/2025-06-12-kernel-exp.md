@@ -12,7 +12,7 @@ Kernel exploitation is one of the many concepts within binary exploitation. Belo
 > My notes follow the book *A Guide to Kernel Exploitation - Attacking the Core* by Enrico Perla and Massimiliano Oldani. [Here](https://www.amazon.com/Guide-Kernel-Exploitation-Attacking-Core/dp/1597494860) is a link to purchase the textbook.
 {: .prompt-info}
 
-## The OS and the Kernel
+## OS & Kernel Basics
 🎉 Goal: Learn what an operating system is, what kernel exploitation is, and why it’s so dangerous.
 
 An **operating system (OS)** is a layer of software that controls all the hardware and gives applications the necessary environment to run on your computer. We refer to the core of an OS as the ***kernel***. The kernel directly interfaces with hardware. It manages I/O operations, schedules processes, etc.
@@ -81,13 +81,15 @@ The scheduler must take some metrics into account when deciding how to schedule 
 
 However, with so many processes being switched between, there is a risk of **race conditions** occurring. Race conditions are when at least two processes are fighting over the same data block — meaning they access and alter shared data at the same time. This gives us unexpected results in our process and exposes it to a vulnerable state.
 
-#### Real-World Exploit: Dirty COW 🐄
+### Real-World Exploit: Dirty COW 🐄
 
 **Dirty COW (CVE-2016-5195)** is a kernel-level exploit which leveraged a race condition to gain write access to the Linux kernel’s memory mappings with copy-on-write, allowing an attacker to raise their privileges and disable security mechanisms. Here’s [a video](https://www.youtube.com/watch?v=kEsshExn7aE) if you want to learn more. 🐄
 
 Okay now we all get it. Processes aren’t *really* running at the same time on one CPU, only one process per single-core CPU. Now that we have a good grasp on how processes share CPU time, let’s face another question…
 
-### How do processes share memory?
+## All About Virtual Memory
+
+### Sharing Memory -- Virtually?
 
 **Every machine is constricted by a fixed amount of memory**, whether that’s 4GB (please upgrade if this is you) or 64GB. So how does your poor OS also manage memory between all the processes we need?
 
@@ -99,19 +101,15 @@ Well, the CPU can only access a certain amount of memory. This space is part of 
 
 ![image](https://github.com/user-attachments/assets/d39e55ab-1671-46bb-a253-1751d7355f23)
 
-### What does virtual memory provide?
-
 - Isolation (what’s happening in one process won’t affect the other, even if it seems like they’re sharing addresses virtually)
 - Protection (processes don’t know the actual physical addresses, and it’s hard for an attacker to map those)
 - Flexibility (shared libraries can be mapped into processes at the same virtual addresses with the same physical pages too)
-
-### What is mapping again?
 
 The OS also takes this responsibility. It maintains **page tables**, which are data structures that translate virtual addresses into physical addresses. As you can likely guess by the name, it keeps these addresses in a table of **pages**.
 
 Every time a process wants to access an address in memory, the MMU resolves the virtual address into the correct physical one using this page table.
 
-### Additional mitigations
+### Modern Mitigations
 
 On top of these basic security measures, modern OSes have implemented many more **kernel protections**. These defenses make kernel exploitation even more complex!
 
@@ -136,7 +134,7 @@ We can tell if KASLR is enabled on Linux (v3.14 and above) by checking if addres
 
 > For further reading, check out [this article](https://dev.to/satorutakeuchi/a-brief-description-of-aslr-and-kaslr-2bbp) 🔖
 
-### How is KASLR then bypassed?
+### Methodology for Bypassing KASLR
 
 1. Spotting a bug in a process that leaks memory and looking for kernel pointers
     1. These leaks can come from uninitialized memory, side channels (if timing-based), and even IOCTLs in some drivers
@@ -204,7 +202,7 @@ If the word *heap* sounds just as intimidating to you as it does to me, then we�
 
 Because, at this point, none of us must be very fond of `malloc()` and `free()`, the kernel has it’s *own allocator*!
 
-### Ok… how does this allocator work?
+### A Special Allocator
 
 OSes may differ in implementations of this allocator, but overall the process remains the same:
 
@@ -217,7 +215,9 @@ The allocator will give the kernel system a pointer to a chunk upon request. It 
 
 But, the kernel still falls victim to overflow vulnerabilities and unsafe function usage, which makes it possible for a user to read the rest of the page or even past the page that the chunk lives in.
 
-## I tried telling a race condition joke...
+## Race Conditions
+
+### I tried telling a race condition joke...
 but you might have heard the punchline first
 
 One last topic to touch up on before we finally have the basics of kernel exploitation in our toolkit is race conditions. A **race condition** happens when two or more threads try to access a shared resource concurrently, altering it in different orders and producing unexpected results.
