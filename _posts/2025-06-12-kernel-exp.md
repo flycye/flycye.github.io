@@ -15,7 +15,7 @@ Kernel exploitation is one of the many concepts within binary exploitation. Belo
 
 🎉 **Goal**: Learn what an operating system is, what kernel exploitation is, and why it’s so dangerous.
 
-## OS & Kernel Basics :
+## OS & Kernel Basics
 
 An **operating system (OS)** is a layer of software that controls all the hardware and gives applications the necessary environment to run on your computer. We refer to the core of an OS as the ***kernel***. The kernel directly interfaces with hardware. It manages I/O operations, schedules processes, etc.
 
@@ -203,6 +203,15 @@ When using this gadget, we have control over the `rdi` argument -- which we will
 
 ### PTI (Page Table Isolation)
 
+Page Table Isolation separates page tables from kernel-land and user-land. Before the [Meltdown vulnerability](https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability), pagetables would reside in the same memory no matter their privilege access.
+- Doesn't map kernel memory into address space when user code is running, only during requests
+- Might increase the overhead of syscalls (more context-switching needed)
+- Makes it far harder to bypass PTI
+
+#### Bypassing PTI
+
+Using corrupted or broken syscall implementations within an outdated device driver is the easiest way to bypass PTI. Check out more [here](https://github.com/pr0cf5/kernel-exploit-practice/blob/master/bypass-smap/README.md).
+
 ## Classifying Bugs
 
 Now that we have a general idea of the difference between user-land and kernel-land, as well as virtual versus physical address spaces, we will delve into how to start exploiting kernels. To do this, we first need to analyze and a gain a great understanding of its underlying code.
@@ -288,5 +297,5 @@ Many solutions have been presented for this solution -- locks, semaphores, etc. 
 
 ## Closing
 
-Although this are just my notes on the textbook, I hope you now have a better understanding of kernel exploitation and what it entails. Next, consider practicing or watching some case studies. [Here](https://github.com/xairy/linux-kernel-exploitation) is a good resource for finding links to futher your studying.
+Although these are just my notes on the textbook, I hope you now have a better understanding of kernel exploitation and what it entails. Next, consider practicing or watching some case studies. [Here](https://github.com/xairy/linux-kernel-exploitation) is a good resource for finding links to futher your studying.
 
