@@ -166,6 +166,8 @@ cat /proc/cpuinfo | grep smep
 ```
 
 > Hypervisorslike VBox, Hyper-V, and certain versions of VMWare do not offer SMEP support
+> Read more on SMEP [here](https://wiki.osdev.org/Supervisor_Memory_Protection)
+{: .prompt-info}
 
 #### Bypassing SMEP
 
