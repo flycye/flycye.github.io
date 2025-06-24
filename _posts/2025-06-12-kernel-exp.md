@@ -295,6 +295,7 @@ Many solutions have been presented for this solution -- locks, semaphores, etc. 
 
 > Race conditions are only one type of logic bug. **Logic bugs** are bugs that do not cause a program to crash, but instead produce unexpected behaviour or results.
 > Read about [filesystem logic bugs](https://y3a.github.io/2023/07/06/filesystem-logic-bugs/), [reference counter overflows](https://ruffell.nz/programming/writeups/2020/09/02/debugging-a-zero-page-reference-counter-overflow-on-4-15-kernel.html), and even [automating vulnerable environment generation for linux kernel vulnerabilities](https://arxiv.org/html/2404.11107v3).
+
 {: .prompt-info}
 
 ## Closing
