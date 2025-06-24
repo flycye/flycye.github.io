@@ -171,7 +171,10 @@ cat /proc/cpuinfo | grep smep
 
 One easy way to bypass this kernel mechanism in older kernels is by **overwriting the CR4 register**. This register is one that contains multiple flags that enable/disable processor features, one of those including SMEP. 
 
-Read more [here](https://breaking-bits.gitbook.io/breaking-bits/exploit-development/linux-kernel-exploit-development/supervisor-mode-execution-protection-smep)
+> Read more [here](https://breaking-bits.gitbook.io/breaking-bits/exploit-development/linux-kernel-exploit-development/supervisor-mode-execution-protection-smep)
+> 
+> And/or, check out [this lovely lecture](https://repository.root-me.org/Exploitation%20-%20Syst%C3%A8me/Unix/EN%20-%20Practical%20SMEP%20bypass%20techniques%20on%20Linux%20-%20Vitaly%20Nikolenko.pdf)
+{: .prompt-info}
 
 ### NX (no eXecute)
 
