@@ -178,6 +178,29 @@ One easy way to bypass this kernel mechanism in older kernels is by **overwritin
 
 ### NX (no eXecute)
 
+The NX mechanism marks certain parts of program memory as non-executable. This way, attackers cannot arbitrarily execute shellcode on the program heap or stack. 
+- Think, even if we have an exploit crafted with an otherwise working buffer overflow, we won't be able to execute it
+
+This mechanism is set into place by hardware like the Intel XD and AMD NX bit, and **applies to executing code in both user-land and kernel-land**.
+
+#### Bypassing NX
+
+Possibly one of the easiest mitigations to bypass, we can sneak by creating ROP chains. **ROP chains** are form of [Return Oriented Programming](https://ctf101.org/binary-exploitation/return-oriented-programming/) where various _gadgets_ are combined together.
+
+These gadgets are functions that already exist within the kernel or various libraries. This way, an attacker can just **use existing code instead of injecting new code** to attack and execute requests in kernel-land.
+
+A very common form of a gadget is a `ret` gadget. Often, it will look like this:
+
+```
+pop rdi; ret
+```
+
+When using this gadget, we have control over the `rdi` argument -- which we will set to the function we want to jump to in that case. Once `ret` is executed, the instruction pointer register (`rip`) will be populated with that information, thus **jumping to our specified location!** Here is a diagram to show the mapping between parts of the program stack and their matching ROP gadgets:
+
+![image](https://github.com/user-attachments/assets/45475da1-ab59-4f1d-a1d0-43b9c60d0951)
+
+> If you want more resources to understand ROP gadgets, check out my _Guide to Binary Exploitation_ or [this guide here](https://ir0nstone.gitbook.io/notes/binexp/stack/return-oriented-programming/gadgets)
+
 ### PTI (Page Table Isolation)
 
 ## Classifying Bugs
