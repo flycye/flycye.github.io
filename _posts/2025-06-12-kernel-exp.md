@@ -153,6 +153,26 @@ We can tell if KASLR is enabled on Linux (v3.14 and above) by checking if addres
 
 ### SMEP/SMAP (Supervisor Mode Execution/Prevention)
 
+SMEP and SMAP are the two mechanisms that prevent user-generated code from running within the kernel. 
+
+Supervisor Mode Execution Protection (SMEP)
+- Disallows kernel from running in ring 0 (_refer to the diagram in the **User privileges** section_)
+- Prevents `ret2usr` exploits from working. A **ret2usr** exploit is when the kernel runs pages from user-land, usually by redirecting a datapointer to code in the user-land.
+
+We can check if we have SMEP enabled on our kernel with the `CPUID` instruction with leaf `0x7`, or by checking the flags of the cpuinfo command output (no root required).
+
+```
+cat /proc/cpuinfo | grep smep
+```
+
+> Hypervisorslike VBox, Hyper-V, and certain versions of VMWare do not offer SMEP support
+
+#### Bypassing SMEP
+
+One easy way to bypass this kernel mechanism in older kernels is by **overwriting the CR4 register**. This register is one that contains multiple flags that enable/disable processor features, one of those including SMEP. 
+
+Read more [here](https://breaking-bits.gitbook.io/breaking-bits/exploit-development/linux-kernel-exploit-development/supervisor-mode-execution-protection-smep)
+
 ### NX (no eXecute)
 
 ### PTI (Page Table Isolation)
