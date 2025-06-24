@@ -1,4 +1,4 @@
-# Hi, I'm Nefeli! 👋 Welcome to my blog :)
+# Hi, I'm Nefeli! 👋 Welcome to my blog
 
 I love making guides about the things I'm learning about, both so I can track my progress and to help other beginners grasp some difficult concepts more easily.
 
