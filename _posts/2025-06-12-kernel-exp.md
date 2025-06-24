@@ -299,5 +299,5 @@ Many solutions have been presented for this solution -- locks, semaphores, etc. 
 
 ## Closing
 
-Although these are just my notes on the textbook, I hope you now have a better understanding of kernel exploitation and what it entails. Next, consider practicing or watching some case studies. [Here](https://github.com/xairy/linux-kernel-exploitation) is a good resource for finding links to futher your studying.
+Although these are just my notes on the textbook, I hope you now have a better understanding of kernel exploitation and what it entails. Next, consider practicing or watching some case studies. [Here](https://github.com/xairy/linux-kernel-exploitation) is a good resource for finding links to further your studying.
 
