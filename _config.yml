@@ -115,7 +115,7 @@ comments:
   giscus:
     repo: flycye/flycye.github.io
     repo_id: R_kgDOO6IQvg
-    category: Comments
+    category: General
     category_id: DIC_kwDOO6IQvs4CrmLA
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
