@@ -205,7 +205,7 @@ When using this gadget, we have control over the `rdi` argument -- which we will
 
 ### PTI (Page Table Isolation)
 
-Page Table Isolation separates page tables from kernel-land and user-land. Before the [Meltdown vulnerability](https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability), pagetables would reside in the same memory no matter their privilege access.
+Page Table Isolation separates page tables from kernel-land and user-land. Before the [Meltdown vulnerability](https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)), pagetables would reside in the same memory no matter their privilege access.
 - Doesn't map kernel memory into address space when user code is running, only during requests
 - Might increase the overhead of syscalls (more context-switching needed)
 - Makes it far harder to bypass PTI
