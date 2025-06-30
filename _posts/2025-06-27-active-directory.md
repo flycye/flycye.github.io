@@ -1,9 +1,9 @@
 ---
-title: All About Active Directory
-author: nefeli
+title: ALl About Active Directory
 date: 2025-06-27
-tags: guide
-
+categories: ['guide']
+tags: ['active-directory']
+author: nefeli
 ---
 
 ## Introduction
