@@ -1,5 +1,5 @@
 ---
-title: ALl About Active Directory
+title: All About Active Directory
 date: 2025-06-27
 categories: ['guide']
 tags: ['active-directory']
@@ -26,3 +26,4 @@ Turn off multicast name resolution (Local Computer Policy)
 -> Computer Config -> Admin Templates -> Network
 -> DNS Client (Group Policy Editor)
 ```
+
