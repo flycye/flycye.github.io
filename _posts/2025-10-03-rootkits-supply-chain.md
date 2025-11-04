@@ -1,5 +1,5 @@
 ---
-title: Dependency Confusion: What can we do? (WIP)
+title: Dependency Confusion: What can we do?
 date: 2025-06-12
 categories: ['guide']
 tags: ['binary-exploitation']
